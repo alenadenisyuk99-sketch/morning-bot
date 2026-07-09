@@ -1,0 +1,17 @@
+name: Morning Horoscope + Tarot
+
+on:
+  schedule:
+    - cron: '50 5 * * *'  # 8:50 Kyiv (UTC+3)
+  workflow_dispatch:
+
+jobs:
+  send:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - name: Send horoscope and tarot
+        env:
+          TELEGRAM_BOT_TOKEN: ${{ secrets.TELEGRAM_BOT_TOKEN }}
+          ANTHROPIC_API_KEY: ${{ secrets.ANTHROPIC_API_KEY }}
+        run: python3 scripts/horoscope.py
