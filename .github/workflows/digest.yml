@@ -2,7 +2,7 @@ name: Morning LinkedIn Digest
 
 on:
   schedule:
-    - cron: '5 6 * * *'  # 9:05 Kyiv (UTC+3)
+    - cron: '5 6 * * 1-5'  # 9:05 Kyiv (UTC+3), Mon-Fri only
   workflow_dispatch:
 
 jobs:
