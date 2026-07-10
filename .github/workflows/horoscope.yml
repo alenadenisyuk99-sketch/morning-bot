@@ -2,7 +2,7 @@ name: Morning Horoscope + Tarot
 
 on:
   schedule:
-    - cron: '50 5 * * *'  # 8:50 Kyiv (UTC+3)
+    - cron: '50 5 * * 1-5'  # 8:50 Kyiv (UTC+3), Mon-Fri only
   workflow_dispatch:
 
 jobs:
