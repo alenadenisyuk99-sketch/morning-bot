@@ -81,7 +81,9 @@ horoscope_text = claude(f"""Ти веселий астролог. Сьогодн
 ♒ Водолій: ...
 ♓ Риби: ...""")
 
-print("Sending horoscope...")
+print("=== HOROSCOPE ===")
+print(horoscope_text)
+print("=================")
 send_text(horoscope_text)
 
 tarot_caption = claude(f"""Карта таро дня: {card_name}.
@@ -89,7 +91,9 @@ tarot_caption = claude(f"""Карта таро дня: {card_name}.
 Що ця карта несе сьогодні: яка енергія, на що звернути увагу, який настрій дня. Темні карти — як виклик або трансформацію, без страшилок.
 Починай з: 🃏 Карта дня: {card_name}""")
 
-print("Sending tarot...")
+print("=== TAROT ===")
+print(tarot_caption)
+print("=============")
 try:
     send_photo(card_url, tarot_caption)
 except Exception as e:
