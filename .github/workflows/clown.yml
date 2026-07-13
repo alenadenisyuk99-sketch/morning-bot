@@ -1,8 +1,6 @@
 name: Morning Clown
 
 on:
-  schedule:
-    - cron: '0 6 * * 1-5'  # 9:00 Kyiv (UTC+3), Mon-Fri only
   workflow_dispatch:
 
 jobs:
