@@ -19,7 +19,7 @@ def claude(prompt, max_tokens=2000):
         return json.loads(r.read())["content"][0]["text"]
 
 def gramotey(text):
-    return claude(f"""Ти — Граматей, редактор українського тексту. Перевір і виправ цей текст за такими правилами:
+    return claude(f"""Ти — Грамотєй, редактор українського тексту. Перевір і виправ цей текст за такими правилами:
 
 1. Лише літературна українська — жодного суржику, русизмів, кальок з російської
 2. Жодних вигаданих слів, незрозумілих виразів, дивних фразеологізмів
@@ -119,7 +119,7 @@ horoscope_raw = claude(f"""Ти — астролог, який щодня пиш
 
 print("=== HOROSCOPE RAW ===")
 print(horoscope_raw)
-print("=== GRAMOTEY CHECK ===")
+print("=== ГРАМОТЄЙ CHECK ===")
 horoscope_text = gramotey(horoscope_raw)
 print(horoscope_text)
 print("======================")
