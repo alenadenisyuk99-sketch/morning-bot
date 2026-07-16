@@ -2,7 +2,7 @@ import urllib.request, json, os, datetime, random
 
 TELEGRAM_TOKEN = os.environ["TELEGRAM_BOT_TOKEN"]
 ANTHROPIC_KEY = os.environ["ANTHROPIC_API_KEY"]
-CHAT_ID = -1002879305150
+CHAT_IDS = [-1002879305150, -1003988330017]  # Мережа Права + Маркетинг AGRIUM
 
 def claude(prompt, max_tokens=2000):
     data = json.dumps({
@@ -41,22 +41,24 @@ def gramotey(text):
 {text}""", max_tokens=2500)
 
 def send_text(text):
-    data = json.dumps({"chat_id": CHAT_ID, "text": text}).encode("utf-8")
-    req = urllib.request.Request(
-        f"https://api.telegram.org/bot{TELEGRAM_TOKEN}/sendMessage",
-        data=data, headers={"Content-Type": "application/json; charset=utf-8"}
-    )
-    with urllib.request.urlopen(req, timeout=15) as r:
-        return json.loads(r.read())
+    for chat_id in CHAT_IDS:
+        data = json.dumps({"chat_id": chat_id, "text": text}).encode("utf-8")
+        req = urllib.request.Request(
+            f"https://api.telegram.org/bot{TELEGRAM_TOKEN}/sendMessage",
+            data=data, headers={"Content-Type": "application/json; charset=utf-8"}
+        )
+        with urllib.request.urlopen(req, timeout=15) as r:
+            json.loads(r.read())
 
 def send_photo(url, caption):
-    data = json.dumps({"chat_id": CHAT_ID, "photo": url, "caption": caption}).encode("utf-8")
-    req = urllib.request.Request(
-        f"https://api.telegram.org/bot{TELEGRAM_TOKEN}/sendPhoto",
-        data=data, headers={"Content-Type": "application/json; charset=utf-8"}
-    )
-    with urllib.request.urlopen(req, timeout=15) as r:
-        return json.loads(r.read())
+    for chat_id in CHAT_IDS:
+        data = json.dumps({"chat_id": chat_id, "photo": url, "caption": caption}).encode("utf-8")
+        req = urllib.request.Request(
+            f"https://api.telegram.org/bot{TELEGRAM_TOKEN}/sendPhoto",
+            data=data, headers={"Content-Type": "application/json; charset=utf-8"}
+        )
+        with urllib.request.urlopen(req, timeout=15) as r:
+            json.loads(r.read())
 
 today = datetime.date.today()
 day_of_year = today.timetuple().tm_yday
